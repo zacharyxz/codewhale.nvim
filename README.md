@@ -1,6 +1,6 @@
 # codewhale.nvim
 
-CodeWhale integration for Neovim. Opens the [CodeWhale](https://github.com/Hmbown/DeepSeek-TUI) CLI in a [Snacks.nvim](https://github.com/folke/snacks.nvim) terminal window, with shortcutsTOM for injecting file path + line number references directly into the codewhale prompt.
+CodeWhale integration for Neovim. Opens the [CodeWhale](https://github.com/Hmbown/DeepSeek-TUI) CLI in a [Snacks.nvim](https://github.com/folke/snacks.nvim) terminal window, with shortcuts for injecting file path + line number references directly into the codewhale prompt.
 
 This plugin draws inspiration from [opencode.nvim](https://github.com/nickjvandyke/opencode.nvim) and [deepseek.nvim](https://github.com/xiaopixiao/deepseek.nvim), and was built with [CodeWhale](https://github.com/Hmbown/DeepSeek-TUI) + DeepSeek-V4-Pro.
 
