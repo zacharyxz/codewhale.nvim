@@ -93,6 +93,14 @@ local function build_opts(config, env_table, focus)
           mode = "t",
           desc = "Resume session picker",
         },
+        codewhale_escape = {
+          "<Esc>",
+          function()
+            vim.cmd("stopinsert")
+          end,
+          mode = "t",
+          desc = "Exit terminal insert mode",
+        },
       },
     }, config.snacks_win_opts or {}),
   }
