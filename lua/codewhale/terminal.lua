@@ -228,6 +228,30 @@ function M.open(opts_override, cmd_args)
   if term and term:buf_valid() then
     setup_events(term, config)
     terminal = term
+    -- Terminal-mode keymap: Esc exits to normal mode instead of reaching codewhale
+    vim.keymap.set("t", "<Esc>", function()
+      vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true),
+        "n", false
+      )
+    end, { buffer = term.buf, desc = "Exit terminal mode" })
+    -- Normal-mode keymaps for the terminal buffer
+    vim.keymap.set("n", "<Esc>", function()
+      local buf = term.buf
+      if buf and vim.api.nvim_buf_is_valid(buf) then
+        local chan = vim.bo[buf].channel
+        if chan and chan > 0 then
+          vim.api.nvim_chan_send(chan, "\x03")
+        end
+      end
+    end, { buffer = term.buf, desc = "Interrupt codewhale" })
+    vim.keymap.set("n", "i", function()
+      if term.win and vim.api.nvim_win_is_valid(term.win) then
+        vim.api.nvim_win_call(term.win, function()
+          vim.cmd("startinsert")
+        end)
+      end
+    end, { buffer = term.buf, desc = "Re-enter terminal mode" })
   else
     terminal = nil
     vim.notify(
